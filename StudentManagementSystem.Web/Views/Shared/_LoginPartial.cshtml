@@ -1,0 +1,14 @@
+﻿@using Newtonsoft.Json
+@inject IHttpContextAccessor HttpContextAccessor
+
+@if (HttpContextAccessor.HttpContext.Session.GetString("loginDetails") != null)
+{
+    var sessionObj = HttpContextAccessor.HttpContext.Session.GetString("loginDetails");
+    var loginDetails = JsonConvert.DeserializeObject<LoginViewModel>(sessionObj);
+        <span style="margin-right:10px">Hello, @loginDetails.UserName !</span>
+    <a asp-action="Logout" asp-controller="Account" class="btn btn-sm btn-danger">Logout</a>
+}
+else
+{
+    <a asp-action="Login" asp-controller="Account">Login</a>
+}

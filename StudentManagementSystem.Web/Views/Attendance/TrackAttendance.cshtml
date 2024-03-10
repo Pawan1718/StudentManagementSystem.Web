@@ -1,0 +1,31 @@
+﻿@model List<StudentManagementSystem.Models.StudentAttendanceViewModel>
+
+<h1>Track Attendance</h1>
+<h2>Group: @ViewBag.GroupName</h2>
+
+<form asp-action="TrackAttendance" method="post">
+    <input type="hidden" name="groupId" value="@ViewBag.GroupId" />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Present</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td>@Model[i].StudentName</td>
+                    <td>
+                        <input type="hidden" name="attendanceViewModels[@i].StudentId" value="@Model[i].StudentId" />
+                        <input type="checkbox" asp-for="@Model[i].IsPresent" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+

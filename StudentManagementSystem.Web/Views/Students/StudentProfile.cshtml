@@ -1,0 +1,69 @@
+﻿@model StudentManagementSystem.Models.StudentProfileViewModel
+
+<h4>Student Profile</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="StudentProfile" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="mb-3">
+                                <input type="hidden" asp-for="StudentId" class="form-control" />
+                                <span asp-validation-for="StudentId" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="UserName" class="form-label">Username</label>
+                                <input asp-for="UserName" class="form-control" />
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+                        
+                            <div class="mb-3">
+                                <label asp-for="Name" class="form-label">Name</label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                  
+                            <div class="mb-3">
+                                <label asp-for="Contact" class="form-label">Contact</label>
+                                <input asp-for="Contact" class="form-control" />
+                                <span asp-validation-for="Contact" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="CVFileUrl" class="form-label">CV File</label>
+                                <input asp-for="CVFileUrl" class="form-control" readonly />
+                                <span asp-validation-for="CVFileUrl" class="text-danger"></span>
+                                @if (!string.IsNullOrEmpty(Model.CVFileName))
+                                {
+                                    <a href="@Url.Action("DownloadCV", "Students")" class="btn btn-primary">Download CV</a>
+                                }
+                            </div>
+                        </td>
+                    
+                        <td>
+                            <div>
+                                <img width="120" height="150" src="@(Model.ProfilePicture ==null? "/User.jpg":Model.ProfilePicture)" alt="Profile Picture" />
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="ProfilePictureUrl" class="form-label">Profile Picture URL</label>
+                                <input asp-for="ProfilePictureUrl" class="form-control" readonly />
+                                <span asp-validation-for="ProfilePictureUrl" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="mb-3">
+                                <input type="submit" value="Submit" class="btn btn-primary" />
+                                <a asp-action="Index" class="btn btn-secondary">Back</a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>

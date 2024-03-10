@@ -1,0 +1,54 @@
+﻿@model IEnumerable<StudentManagementSystem.Models.ResultViewModel>
+
+@{
+    ViewData["Title"] = "Result";
+}
+
+<h4 class="mt-3">Exam Result List</h4>
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+Id            </th>
+            <th>
+                Exam Name
+            </th>
+            <th>
+                Total Questions
+            </th>
+            <th>
+                Correct Answer
+            </th>
+            <th>
+                Wrong Answer
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExamName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalQuestion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorrectAnswer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WrongAnswer)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
